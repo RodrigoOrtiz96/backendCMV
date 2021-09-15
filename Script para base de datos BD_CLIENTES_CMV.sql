@@ -236,7 +236,7 @@ INSERT INTO TBL_CMV_CLIENTE_CUENTA
            (@idCliente, @idCuenta, @saldoActual, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 GO
 
-/*Consultar cuentas asociadas con algún cliente*/
+/*Consultar cuentas asociadas con algÃºn cliente*/
 CREATE PROCEDURE consultarCuenta (@idCliente int)
 AS
 SELECT TBL_CMV_CLIENTE.nombre, TBL_CMV_CLIENTE.apellidoPaterno, TBL_CMV_CLIENTE.apellidoMaterno
@@ -266,7 +266,7 @@ INSERT INTO [dbo].[TBL_CMV_CLIENTE]
            ('CAMJ650413000', 'CAMJ650413MDFSRS06', 'Josefina', 'Casarrubias', 'Martinez', '20010323'),
            ('CAPH690316SZ3', 'CAPH690316HSESBR00', 'Heriberto', 'Casimiro', 'Poblete', '20040127'),
            ('CAQM871231000', 'CAQM871231MGRMNR04', 'Mariel Anahi', 'Campuzano', 'Quinto', '20001001'),
-           ('CARC920814000', 'CARC920814HGRBMR07', 'Cristian Samuel', 'Cabañas', 'Ramirez', '20041214'),
+           ('CARC920814000', 'CARC920814HGRBMR07', 'Cristian Samuel', 'CabaÃ±as', 'Ramirez', '20041214'),
            ('CARM590708000', 'CARM590608HGRLMG04', 'Miguel', 'Calixto', 'Ramirez', '20041015'),
            ('CARM780929000', 'CARM780929HGRHMG07', 'Miguel', 'Chavez', 'Ramirez', '20040825'),
            ('CARM810205000', 'CARM810205HGRRMG02', 'Miguel Angel', 'Carrera', 'Romero', '20050320'),
@@ -329,4 +329,23 @@ INSERT INTO [dbo].[TBL_CMV_CLIENTE_CUENTA]
            (7, 0, 13621.91, '20080809', '20070421'),
            (18, 3, 37574.54, '20100705', '20060606'),
            (12, 1, 16031.94, '20100610', '20090915');
+GO
+
+
+/*CreaciÃ³n del usuario Prueba*/
+USE [master]
+GO
+CREATE LOGIN [Prueba] WITH PASSWORD=N'123456', DEFAULT_DATABASE=[CLIENTES_CMV], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+use [CLIENTES_CMV];
+GO
+use [master];
+GO
+USE [CLIENTES_CMV]
+GO
+CREATE USER [Prueba] FOR LOGIN [Prueba]
+GO
+USE [CLIENTES_CMV]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [Prueba]
 GO
